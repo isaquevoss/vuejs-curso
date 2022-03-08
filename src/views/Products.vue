@@ -2,9 +2,14 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-text-field label="id" readonly v-model="product.id"></v-text-field>
+
+        <v-text-field label="id" v-model="product.id"></v-text-field>
+
         <v-text-field label="nome" v-model="product.name"></v-text-field>
         <v-btn @click="editarProduto">Salvar</v-btn>
+
+        <v-btn @click="cadastrarProduto">Cadastrar</v-btn> 
+
         <v-btn @click="buscarProdutos">Buscar</v-btn>
         <v-data-table
           :headers="headers"
@@ -12,7 +17,12 @@
           @click:row="editProduto"
           :items-per-page="5"
           class="elevation-1"
-        ></v-data-table>
+        >
+          <template v-slot:item.actions="{ item }">
+            <v-icon @click="deletarProduto(item.id)"> mdi-delete </v-icon>
+          </template>
+
+        </v-data-table>
       </v-col>
     </v-row>
   </v-container>
@@ -28,6 +38,7 @@ export default {
       headers: [
         { text: "ID", value: "id" },
         { text: "Nome", value: "name" },
+        { text: "Actions", value: "actions", sortable: false },
       ],
     };
   },
@@ -42,9 +53,18 @@ export default {
           console.log(error);
         });
     },
+    deletarProduto(id) {
+      axios.delete("http://localhost:3000/products/" + id).then(() => {
+        this.buscarProdutos();
+        alert("produto deletado com sucesso");
+      });
+    },
     editarProduto() {
       axios
-        .put("http://localhost:3000/products/" + this.product.id, this.product)
+        .patch(
+          "http://localhost:3000/products/" + this.product.id,
+          this.product
+        )
         .then((response) => {
           console.log(response);
           this.buscarProdutos();
@@ -53,7 +73,6 @@ export default {
           console.log(error);
         });
     },
-
     editProduto(item) {
       console.log(item);
       this.product = item;

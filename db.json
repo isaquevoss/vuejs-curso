@@ -1,8 +1,37 @@
 {
+  "clients": [
+    {
+      "id": "1",
+      "name": "Joao"
+    },
+    {
+      "id": 2,
+      "name": "Maria"
+    }
+  ],
   "products": [
     {
-      "id": 1,
-      "name": "product1 asdfasdfas"
+      "name": "novo produto",
+      "id": 3
+    },
+    {
+      "name": "novo produto",
+      "id": "4"
+    },
+    {
+      "name": "Produto 2",
+      "id": 2,
+      "grupo": "outros"
+    },
+    {
+      "name": "Produto 2fadfa",
+      "id": "HKLnkdk",
+      "grupo": "outros"
+    },
+    {
+      "name": "Produto 2fadfa",
+      "id": "F-C1ix7",
+      "grupo": "outros"
     }
   ]
 }
