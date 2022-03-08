@@ -1,17 +1,21 @@
 <template>
-  <div>
-    <v-text-field label="id" readonly v-model="product.id"></v-text-field>
-    <v-text-field label="nome" v-model="product.name"></v-text-field>
-    <v-btn @click="editarProduto">Salvar</v-btn>
-    <v-btn @click="buscarProdutos">Buscar</v-btn>
-    <v-data-table
-      :headers="headers"
-      :items="produtos"
-      @click:row="editProduto"
-      :items-per-page="5"
-      class="elevation-1"
-    ></v-data-table>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col>
+        <v-text-field label="id" readonly v-model="product.id"></v-text-field>
+        <v-text-field label="nome" v-model="product.name"></v-text-field>
+        <v-btn @click="editarProduto">Salvar</v-btn>
+        <v-btn @click="buscarProdutos">Buscar</v-btn>
+        <v-data-table
+          :headers="headers"
+          :items="produtos"
+          @click:row="editProduto"
+          :items-per-page="5"
+          class="elevation-1"
+        ></v-data-table>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
